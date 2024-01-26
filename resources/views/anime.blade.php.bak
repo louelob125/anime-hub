@@ -1,0 +1,58 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Anime Dashboard') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">English Title</th>
+                                <th scope="col">Japanese Title</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Genre</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Platform</th>
+                                <th scope="col">Collection</th>
+                                <th scope="col">Ratings</th>
+                                <th scope="col">Synopsis</th>
+                                <th scope="col">Episode Count</th>
+                                <th scope="col">Release Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($animes as $anime)
+                                <tr>
+                                    <th scope="row">{{ $anime->anime_id }}</th>
+                                    <td>{{ $anime->english_title }}</td>
+                                    <td>{{ $anime->japanese_title }}</td>
+                                    <td>{{ $anime->author->name }}</td>
+                                    <td>{{ $anime->genre->name }}</td>
+                                    <td>{{ $anime->type->name }}</td>
+                                    <td>{{ $anime->platform->name }}</td>
+                                    <td>{{ $anime->collection->name }}</td>
+                                    <td>{{ $anime->ratings }}</td>
+                                    <td>{{ $anime->synopsis }}</td>
+                                    <td>{{ $anime->episode_count }}</td>
+                                    <td>{{ $anime->release_date }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
